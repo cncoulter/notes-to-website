@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="generator" content="pandoc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadMe</title>
+    <link rel="stylesheet" href="/home/cameron/Cloud/code/GitHub/notes-to-website/css/styles.css" />
+    
+</head>
+
+<body>
+
+    <header>
+        <p>My Notes</p>
+    </header>
+
+    <main>
+
+    <h1 id="readme">ReadMe</h1>
+    <h2 id="contents">Contents</h2>
+    <ol type="1">
+    <li><a href="#setup">Setup</a>
+    <ol type="1">
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#basic-setup">Basic Setup</a></li>
+    <li><a href="#sync-your-files">Sync Your Files</a></li>
+    <li><a href="#customize-styles">Customize Styles</a></li>
+    <li><a href="#customize-template">Customize Template</a></li>
+    </ol></li>
+    <li><a href="#ongoing-usage">Ongoing Usage</a>
+    <ol type="1">
+    <li><a href="#build">Build a website from your notes</a></li>
+    <li><a href="#add-page">Add a new page</a></li>
+    <li><a href="#add-category">Add a new category</a></li>
+    <li><a href="#link-to-page">Link to another page</a></li>
+    <li><a href="#version-control-git">Version control with Git</a></li>
+    </ol></li>
+    </ol>
+    <h2 id="setup">Setup</h2>
+    <p>This instructions work on <a
+    href="https://fedoraproject.org/">Fedora</a> and should work on
+    other GNU/Linux distros. If you run a different operating system,
+    your setup process may differ.</p>
+    <h3 id="prerequisites">Prerequisites</h3>
+    <p>Install <a href="https://pandoc.org/">Pandoc</a> and <a
+    href="https://git-scm.com/">Git</a>.</p>
+    <p>On Fedora, you can install these programs by running the follow
+    command in your terminal:</p>
+    <pre><code>$ sudo dnf install pandoc git</code></pre>
+    <h3 id="basic-setup">Basic Setup</h3>
+    <p>Clone or download this repository to your desktop.</p>
+    <p>Each category folder has a build.sh file. This file is a Bash
+    script that when executed will covert the Markdown files in that
+    folder to HTML files.</p>
+    <p>The build scripts will not work until you update them. You only
+    need to update line 5 in the build.sh files; set it to the path for
+    the notes folder. For example, if your username is cam, if you have
+    your notes saved in your Nextcloud folder, and if your notes folder
+    is named “notes-to-website”, then line 5 should look like:</p>
+    <pre><code>rootDir=/home/cam/Nextcloud/notes-to-website</code></pre>
+    <p>You will need to update every build.sh file accordingly.</p>
+    <p>To run the build scripts, execute the script in your terminal,
+    like so. Make sure your terminal window is in the same folder as the
+    build script.</p>
+    <pre><code>$ ./build.sh</code></pre>
+    <p>If you lack permission to run the build files, you can use the
+    <code>chmod</code> command to give yourself permission to run the
+    file:</p>
+    <pre><code>$ chmod u+x ./build.sh</code></pre>
+    <p>If you only made changes to notes within one sub-folder, you only
+    need to run the build script for that folder. If you want to update
+    all of your notes at once, you can run the build-all.sh script. Like
+    with the build.sh files, you will need to update line 5 in
+    build-all.sh before you can successfully run it.</p>
+    <p>That is all the setup that is required. Now you can edit the
+    existing notes and run the build scripts to covert your notes to a
+    simple website.</p>
+    <h3 id="sync-your-files">Sync Your Files</h3>
+    <p>This notes system is simply a folder with plain text and HTML
+    files inside. If you want your notes to be available across your
+    devices, then you can sync the notes folder using Dropbox,
+    Nextcloud, Syncthing, or whichever file syncing service you
+    prefer.</p>
+    <h3 id="customize-styles">Customize Styles</h3>
+    <p>The css folder has styles.css, a stylesheet for your notes
+    website. This stylesheet is derived from the styles on <a
+    href="https://www.camcoulter.com/">my personal website/blog</a> and
+    will switch between light/dark modes depending on your preferences
+    saved in your browser.</p>
+    <p>All of the webpages reference this stylesheet, so if you make a
+    change here, all of your webpages will update accordingly, without
+    you needing to build them again.</p>
+    <p>If you want to try customizing how your notes website looks, try
+    this:</p>
+    <ol type="1">
+    <li>In the css folder, delete the styles.css file.</li>
+    <li>Find and download a <a
+    href="https://dev.to/logrocket/comparing-classless-css-frameworks-3267">classless
+    CSS stylesheet</a> that you like. I am a fan of <a
+    href="https://watercss.kognise.dev/">Water.css</a>.</li>
+    <li>Put the classless CSS stylesheet in the css folder, and rename
+    it to “styles.css”.</li>
+    </ol>
+    <h3 id="customize-template">Customize Template</h3>
+    <p>The template.html file serves as a template for the webpages. You
+    can edit this file if you want to change the header or add a
+    footer.</p>
+    <p>If you sync your notes folder to your mobile devices, there is a
+    chance the styles won’t display properly on mobile because mobile
+    operating systems are weird. One way to fix this would be to update
+    the template.html file so that it directly includes your CSS styles
+    as an <a
+    href="https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/How_CSS_is_structured#internal_stylesheet">internal
+    stylesheet</a> rather than an externally referenced stylesheet.</p>
+    <p>Any time you make a change to template.html, you will need to
+    re-build your notes website to see the changes take effect.</p>
+    <h2 id="ongoing-usage">Ongoing Usage</h2>
+    <h3 id="build">Build a website from your notes</h3>
+    <p>Once you have made a change your notes in Markdown, you will need
+    to run the build scripts to update your notes website.</p>
+    <p>If you only updated notes in one category folder, you can just
+    execute the build script in that folder. For example:</p>
+    <pre><code>$ ./Lists/build.sh</code></pre>
+    <p>You can also run the build-all script, which will update your
+    entire notes website, making sure it mirrors your Markdown
+    notes.</p>
+    <pre><code>$ ./build-all.sh</code></pre>
+    <h3 id="add-page">Add a new page</h3>
+    <p>To add a new page, first create a plain text file with the
+    extension -.md. Do not include spaces within filenames.</p>
+    <p>The start of your new notes page should look something like
+    this:</p>
+    <pre><code>---
+title: To Read
+---
+# To Read</code></pre>
+    <p>The title value will serve as the webpage’s title. (That’s the
+    text you see identifying the tab in your browser.) The text after
+    the number sign will serve as the primary heading for the new
+    page.</p>
+    <p>You likely want to edit an existing note so that it links to your
+    new note. The simplest way to do this is to open the index.md file
+    for the same category, and add a link there to the new note.</p>
+    <h3 id="add-category">Add a new category</h3>
+    <p>To add a new category, make a new folder. It should not be nested
+    within an existing category folder.</p>
+    <p>Create a index.md note for the category within the new folder,
+    and edit the primary index.md note so that it links to the index for
+    the new category.</p>
+    <p>Copy the build.sh file from an existing category folder, and
+    paste it into your new category folder. Update line 6 so that it
+    references the new category folder.</p>
+    <h3 id="link-to-page">Link to another page</h3>
+    <p>Here is the standard Markdown syntax for a link:
+    <code>[Cam's personal site](https://www.camcoulter.com)</code>. That
+    will appear as <a href="https://www.camcoulter.com">Cam’s personal
+    site</a> when converted to HTML.</p>
+    <p>If you want to link to another file in the same folder, structure
+    your link like so: <code>[My Notes Homepage](./index.html)</code>.
+    That will appear as <a href="./index.html">My Notes Homepage</a>
+    when converted to HTML.</p>
+    <p>If you are editing the primary index note to link to a note in a
+    category folder, you will need to include the category’s folder name
+    within the link, like so:
+    <code>[To Read](./Lists/to-read.html)</code>. That will appear as <a
+    href="./Lists/to-read.html">To Read</a> when converted to HTML.</p>
+    <p>If you are editing a note within a category to link to a note in
+    a different category, structure your link like so:
+    <code>[Pandoc](../Tech/pandoc.html)</code>. That is how you would
+    link a note in your Todo folder to a note in your Tech folder.</p>
+    <p>Essentially, whatever the filename of the Markdown note is, the
+    filename of the HTML note will be the same, except with the
+    extension changed accordingly. You don’t need to include
+    <code>https://www.</code> within the link when you are linking to
+    other pages on the same site. When you are linking to other pages on
+    the same site, <code>./</code> indicates that a file is available in
+    the current/same folder, and <code>../</code> indicates that a file
+    is available the parent folder.</p>
+    <h3 id="version-control-git">Version control with Git</h3>
+    <p>You can use Git to version control your notes. Review <a
+    href="./Tech/git.html">your notes on Git</a> for guidance on how it
+    works.</p>
+    <p>You can make commits every time you edit a note, or you can just
+    commit a routine monthly snapshot if that works better for you.</p>
+
+    </main>
+
+</body>
+</html>
