@@ -6,5 +6,5 @@ rootDir=/home/cam/Nextcloud/notes-to-website # Update this line with the path fo
 thisDir=$rootDir/Todo # Update this line with the name of the category folder
 
 for file in $thisDir/*.md; do # Explanation: for every file in this category folder
-	pandoc -f markdown -t html5 -s --template="$rootDir/template.html" --css="$rootDir/css/styles.css" "$file" -o "${file%.*}.html" # Explanation: use pandoc to convert the markdown source file into an HTML output. Use the referenced HTML template and incorporate the referenced CSS stylesheet.
+	pandoc -f markdown -t html5 -s --template="$rootDir/template.html" --css="../css/styles.css" "$file" -o "${file%.*}.html" # Explanation: use pandoc to convert the markdown source file into an HTML output. Use the referenced HTML template and incorporate the referenced CSS stylesheet.
 done
